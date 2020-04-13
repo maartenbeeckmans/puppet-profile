@@ -1,6 +1,6 @@
 class profile::firewall (
-  Boolean $purge            = $profile::firewall::params::purge,
-  Boolean $purge_unmanaged  = $profile::firewall::params::purge_unmanaged,
+  Boolean $purge            = $profile::params::firewall_purge,
+  Boolean $purge_unmanaged  = $profile::params::firewall_purge_unmanaged,
 )
 {
   resources { 'firewall':

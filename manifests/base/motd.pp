@@ -1,5 +1,5 @@
 class profile::base::motd (
-  String  $motd_message = $profile::base::params::motd,
+  String  $motd_message = $profile::params::motd,
 )
 {
   class {'motd':

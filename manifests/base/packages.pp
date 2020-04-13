@@ -1,6 +1,6 @@
 class profile::base::packages (
-  Array   $default_packages = $profile::base::params::default_packages,
-  Boolean $install_epel     = $profile::base::params::install_epel,
+  Array   $default_packages = $profile::params::default_packages,
+  Boolean $install_epel     = $profile::params::install_epel,
 )
 {
   if ($facts['os']['family'] == 'redhat' and $install_epel) {
