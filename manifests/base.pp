@@ -5,8 +5,13 @@
 # 
 class profile::base (
   Boolean $packages = false,
+  Boolean $motd     = false,
 ){
   if $packages {
     class { 'profile::base::packages': }
+  }
+
+  if $motd {
+    class { 'profile::base::motd': }
   }
 }
