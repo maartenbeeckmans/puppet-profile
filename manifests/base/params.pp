@@ -5,4 +5,5 @@ class profile::base::params {
     String $selinux_type  = "targeted",
   }
   String $motd = "This machine is puppet managed"
+  Array $fail2ban_services = ['ssh', 'ssh-ddos']
 }
