@@ -8,6 +8,7 @@ class profile::base (
   Boolean $motd     = false,
   Boolean $firewall = false,
   Boolean $fail2ban = false,
+  Boolean $selinux  = false,
 ){
   if $packages {
     class { 'profile::base::packages': }
@@ -22,5 +23,9 @@ class profile::base (
       class { 'profile::base::fail2ban': }
     }
     class { 'profile::firewall': }
+  }
+
+  if $selinux {
+    class { 'profile::base::selinux': }
   }
 }
