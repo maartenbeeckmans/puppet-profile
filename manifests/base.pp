@@ -4,7 +4,9 @@
 #  class { '::profile::base': }
 # 
 class profile::base (
-
+  Boolean $packages = false,
 ){
-
+  if $packages {
+    class { 'profile::base::packages': }
+  }
 }
