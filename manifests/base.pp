@@ -13,6 +13,7 @@ class profile::base (
   Boolean $manage_repos    = false,
   Boolean $manage_resolv   = false,
   Boolean $manage_selinux  = false,
+  Boolean $manage_ssh      = false,
 )
 {
   if $manage_accounts {
@@ -48,5 +49,9 @@ class profile::base (
 
   if $manage_selinux {
     class { 'profile::base::selinux': }
+  }
+
+  if $manage_ssh {
+    class { 'profile::base::ssh': }
   }
 }
