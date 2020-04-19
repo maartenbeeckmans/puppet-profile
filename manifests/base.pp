@@ -7,8 +7,8 @@ class profile::base (
   Boolean $manage_accounts = false,
   Boolean $manage_firewall = false,
   Boolean $manage_fail2ban = false,
-  Boolean $manage_packages = false,
   Boolean $manage_motd     = false,
+  Boolean $manage_packages = false,
   Boolean $manage_selinux  = false,
 )
 {
@@ -23,12 +23,12 @@ class profile::base (
     class { 'profile::firewall': }
   }
 
-  if $manage_packages {
-    class { 'profile::base::packages': }
-  }
-
   if $manage_motd {
     class { 'profile::base::motd': }
+  }
+
+  if $manage_packages {
+    class { 'profile::base::packages': }
   }
 
   if $manage_selinux {
