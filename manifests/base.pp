@@ -35,10 +35,6 @@ class profile::base (
     class { 'profile::base::packages': }
   }
 
-  if $manage_puppet {
-    class { 'profile::base::puppet': }
-  }
-
   if $manage_repos {
     class { 'profile::base::repositories': }
   }
