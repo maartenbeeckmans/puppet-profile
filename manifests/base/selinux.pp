@@ -1,6 +1,6 @@
 class profile::base::selinux (
-  String $mode  = $profile::params::selinux_mode,
-  String $type  = $profile::params::selinux_type,
+  String $mode  = 'enforcing',
+  String $type  = 'targeted',
 )
 {
   class { 'selinux':

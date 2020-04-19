@@ -1,7 +1,11 @@
 class profile::base::fail2ban (
-  Array $services = $profile::params::fail2ban_services,
+  Array $services = ['ssh', 'ssh-ddos']
 )
 {
+  package {'fail2ban':
+    ensure => present,
+  }
+
   class { 'fail2ban':
     jails => $services
   }
