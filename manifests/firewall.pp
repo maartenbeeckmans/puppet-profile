@@ -1,21 +1,23 @@
 class profile::firewall (
-  Boolean $purge            = $profile::params::firewall_purge,
-  Boolean $purge_unmanaged  = $profile::params::firewall_purge_unmanaged,
-)
-{
+  String $ensure = 'running',
+  Hash $entries = {},
+  Boolean $purge = true,
+) {
+  class { '::firewall':
+    ensure => $ensure,
+  }
+
   resources { 'firewall':
     purge => $purge,
   }
-  
-  resources { 'firewallchain':
-    purge => $purge_unmanaged,
+
+  profile::firewall::entry { '000 related,established':
+    protocol => 'all',
+    state    => [
+      'RELATED',
+      'ESTABLISHED',
+    ],
   }
 
-  Firewall {
-    before  =>  Class['profile::firewall::post'],
-    require =>  Class['profile::firewall::pre'],
-  }
-
-  class { ['profile::firewall::pre', 'profile::firewall::post']: }
-  class { 'firewall': }
+  create_resources( '::profile::firewall::entry', $entries)
 }
