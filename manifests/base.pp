@@ -4,28 +4,29 @@
 #  class { '::profile::base': }
 # 
 class profile::base (
-  Boolean $packages = false,
-  Boolean $motd     = false,
-  Boolean $firewall = false,
-  Boolean $fail2ban = false,
-  Boolean $selinux  = false,
-){
-  if $packages {
+  Boolean $manage_packages = false,
+  Boolean $manage_motd     = false,
+  Boolean $manage_firewall = false,
+  Boolean $manage_fail2ban = false,
+  Boolean $manage_selinux  = false,
+)
+{
+  if $manage_packages {
     class { 'profile::base::packages': }
   }
 
-  if $motd {
+  if $manage_motd {
     class { 'profile::base::motd': }
   }
 
-  if $firewall {
-    if $fail2ban {
+  if $manage_firewall {
+    if $manage_fail2ban {
       class { 'profile::base::fail2ban': }
     }
     class { 'profile::firewall': }
   }
 
-  if $selinux {
+  if $manage_selinux {
     class { 'profile::base::selinux': }
   }
 }
