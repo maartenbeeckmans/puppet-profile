@@ -5,15 +5,22 @@
 # 
 class profile::base (
   Boolean $manage_accounts = false,
-  Boolean $manage_packages = false,
-  Boolean $manage_motd     = false,
   Boolean $manage_firewall = false,
   Boolean $manage_fail2ban = false,
+  Boolean $manage_packages = false,
+  Boolean $manage_motd     = false,
   Boolean $manage_selinux  = false,
 )
 {
   if $manage_accounts {
     class { 'profile::base::accounts': }
+  }
+
+  if $manage_firewall {
+    if $manage_fail2ban {
+      class { 'profile::base::fail2ban': }
+    }
+    class { 'profile::firewall': }
   }
 
   if $manage_packages {
@@ -22,13 +29,6 @@ class profile::base (
 
   if $manage_motd {
     class { 'profile::base::motd': }
-  }
-
-  if $manage_firewall {
-    if $manage_fail2ban {
-      class { 'profile::base::fail2ban': }
-    }
-    class { 'profile::firewall': }
   }
 
   if $manage_selinux {
