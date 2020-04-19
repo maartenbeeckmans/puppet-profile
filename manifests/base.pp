@@ -11,6 +11,7 @@ class profile::base (
   Boolean $manage_packages = false,
   Boolean $manage_puppet   = false,
   Boolean $manage_repos    = false,
+  Boolean $manage_resolv   = false,
   Boolean $manage_selinux  = false,
 )
 {
@@ -39,6 +40,10 @@ class profile::base (
 
   if $manage_repos {
     class { 'profile::base::repositories': }
+  }
+
+  if $manage_resolv {
+    class { 'profile::base::resolv': }
   }
 
   if $manage_selinux {
