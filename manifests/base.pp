@@ -4,6 +4,7 @@
 #  class { '::profile::base': }
 # 
 class profile::base (
+  Boolean $manage_accounts = false,
   Boolean $manage_packages = false,
   Boolean $manage_motd     = false,
   Boolean $manage_firewall = false,
@@ -11,6 +12,10 @@ class profile::base (
   Boolean $manage_selinux  = false,
 )
 {
+  if $manage_accounts {
+    class { 'profile::base::accounts': }
+  }
+
   if $manage_packages {
     class { 'profile::base::packages': }
   }
