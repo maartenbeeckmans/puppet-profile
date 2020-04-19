@@ -9,6 +9,7 @@ class profile::base (
   Boolean $manage_fail2ban = false,
   Boolean $manage_motd     = false,
   Boolean $manage_packages = false,
+  Boolean $manage_puppet   = false,
   Boolean $manage_selinux  = false,
 )
 {
@@ -29,6 +30,10 @@ class profile::base (
 
   if $manage_packages {
     class { 'profile::base::packages': }
+  }
+
+  if $manage_puppet {
+    class { 'profile::base::puppet': }
   }
 
   if $manage_selinux {
