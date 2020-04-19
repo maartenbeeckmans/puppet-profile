@@ -10,6 +10,7 @@ class profile::base (
   Boolean $manage_motd     = false,
   Boolean $manage_packages = false,
   Boolean $manage_puppet   = false,
+  Boolean $manage_repos    = false,
   Boolean $manage_selinux  = false,
 )
 {
@@ -34,6 +35,10 @@ class profile::base (
 
   if $manage_puppet {
     class { 'profile::base::puppet': }
+  }
+
+  if $manage_repos {
+    class { 'profile::base::repositories': }
   }
 
   if $manage_selinux {
