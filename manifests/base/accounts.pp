@@ -1,18 +1,18 @@
 class profile::base::accounts (
-  Hash $accounts   = {},
+  Hash $users   = {},
   Hash $groups     = {},
   Hash $sudo_confs = {},
 )
 {
-  if length($accounts) > 0 {
-    create_resources( 'accounts::user', $accounts)
+  if length($users) > 0 {
+    create_resources( 'accounts::user', $users)
   }
 
   if length($groups) > 0 {
     create_resources( 'group', $groups)
   }
 
-  if (length($accounts) > 0) and (length($groups) > 0) {
+  if (length($users) > 0) and (length($groups) > 0) {
     Group<||> -> User<||>
   }
 
