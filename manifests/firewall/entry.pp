@@ -1,4 +1,4 @@
-define profiles::bootstrap::firewall::entry (
+define profile::firewall::entry (
   Profile::FirewallAction $action = 'accept',
   Profile::FirewallChain $chain = 'INPUT',
   Optional[String] $interface = undef,
@@ -17,18 +17,18 @@ define profiles::bootstrap::firewall::entry (
   if $interface {
     Firewall[$name] {
       iniface => $interface,
-    }   
+    }
   }
 
   if $port {
     Firewall[$name] {
       dport => $port,
-    }   
+    }
   }
 
   if $state {
     Firewall[$name] {
       state => $state,
-    }   
+    }
   }
 }
