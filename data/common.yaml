@@ -1,1 +1,22 @@
 ---
+lookup_options:
+  profile::bootstrap::accounts::accounts:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  profile::bootstrap::accounts::groups:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  profile::bootstrap::accounts::sudo_confs:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  profile::bootstrap::firewall::entries:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  profile::bootstrap::repositories::repositories:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
