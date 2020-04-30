@@ -1,4 +1,4 @@
-class profiles::bootstrap::ssh (
+class profile::base::ssh (
   String $allow_agent_forwarding = 'no',
   String $forward_agent = 'no',
   String $password_authentication = 'no',
@@ -14,7 +14,7 @@ class profiles::bootstrap::ssh (
     port                    => $port,
   }
 
-  profiles::firewall::entry { '010 allow ssh':
+  profile::firewall::entry { '010 allow ssh':
     port => Integer($port),
   }
 }
