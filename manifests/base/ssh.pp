@@ -1,3 +1,25 @@
+# == Class: profile::base::ssh
+#
+# Manages ssh client and server configuration + firewall
+#
+# === Dependencies
+#
+# - saz-ssh
+#
+# === Parameters
+#
+# $ports                           Array of ssh ports
+#
+# $storeconfigs_enabled            Will host keys be written to known_hosts
+#
+# $permit_root_login               Allow root login with ssh
+#
+# $password_authentication         Allow password authentication with ssh
+#
+# $print_motd                      Print motd when connected with ssh
+#
+# $x11_forwarding                  Allow X11Forwarding with ssh
+#
 class profile::base::ssh (
   Array     $ports                    = ['22'],
   Boolean   $storeconfigs_enabled     = false,

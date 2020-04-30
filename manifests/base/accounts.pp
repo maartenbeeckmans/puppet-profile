@@ -1,3 +1,20 @@
+# == Class: profile::base::accounts
+#
+# Manages user accounts, groups and sudo configuations
+#
+# === Dependencies
+#
+# - puppetlabs-accounts
+# - saz-sudo
+#
+# === Parameters
+#
+# $users        Hash of the user configuration
+#
+# $groups       Hash of the group configuration
+#
+# $sudo_confs   Hash of the sudo configuration
+#
 class profile::base::accounts (
   Hash $users   = {},
   Hash $groups     = {},
