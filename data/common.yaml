@@ -1,14 +1,14 @@
 ---
 lookup_options:
-  profile::bootstrap::accounts::accounts:
+  profile::base::accounts::accounts:
     merge:
       strategy: deep
       merge_hash_arrays: true
-  profile::bootstrap::accounts::groups:
+  profile::base::accounts::groups:
     merge:
       strategy: deep
       merge_hash_arrays: true
-  profile::bootstrap::accounts::sudo_confs:
+  profile::base::accounts::sudo_confs:
     merge:
       strategy: deep
       merge_hash_arrays: true
@@ -16,7 +16,7 @@ lookup_options:
     merge:
       strategy: deep
       merge_hash_arrays: true
-  profile::bootstrap::repositories::repositories:
+  profile::base::repositories::repositories:
     merge:
       strategy: deep
       merge_hash_arrays: true
