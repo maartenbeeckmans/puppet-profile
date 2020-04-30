@@ -1,5 +1,5 @@
 class profile::base::motd (
-  Boolean $use_template     = false,
+  Boolean $use_template = true,
   String  $motd_message = 'This machine is managed by Puppet',
 )
 {
