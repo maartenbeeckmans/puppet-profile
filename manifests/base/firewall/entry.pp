@@ -1,4 +1,4 @@
-define profile::firewall::entry (
+define profile::base::firewall::entry (
   Profile::FirewallAction $action = 'accept',
   Profile::FirewallChain $chain = 'INPUT',
   Optional[String] $interface = undef,

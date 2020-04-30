@@ -14,7 +14,7 @@ class profile::base::ssh (
     port                    => $port,
   }
 
-  profile::firewall::entry { '010 allow ssh':
+  profile::base::firewall::entry { '010 allow ssh':
     port => Integer($port),
   }
 }

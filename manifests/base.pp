@@ -24,7 +24,7 @@ class profile::base (
     if $manage_fail2ban {
       class { 'profile::base::fail2ban': }
     }
-    class { 'profile::firewall': }
+    class { 'profile::base::firewall': }
   }
 
   if $manage_motd {

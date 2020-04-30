@@ -1,4 +1,4 @@
-class profile::firewall (
+class profile::base::firewall (
   String $ensure = 'running',
   Hash $entries = {},
   Boolean $purge = true,
@@ -11,7 +11,7 @@ class profile::firewall (
     purge => $purge,
   }
 
-  profile::firewall::entry { '000 related,established':
+  profile::base::firewall::entry { '000 related,established':
     protocol => 'all',
     state    => [
       'RELATED',
