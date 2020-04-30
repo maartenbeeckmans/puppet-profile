@@ -1,20 +1,34 @@
 class profile::base::ssh (
-  String $allow_agent_forwarding = 'no',
-  String $forward_agent = 'no',
-  String $password_authentication = 'no',
-  String $port = '22',
+  Array     $ports                    = ['22'],
+  Boolean   $storeconfigs_enabled     = false,
+  String    $permit_root_login        = 'no',
+  String    $password_authentication  = 'yes',
+  String    $print_motd               = 'yes',
+  String    $x11_forwarding           = 'no',
 ) {
-  class { '::ssh::client':
-    forward_agent           => $forward_agent,
-    password_authentication => $password_authentication,
-  }
-  class { '::ssh::server':
-    allow_agent_forwarding  => $allow_agent_forwarding,
-    password_authentication => $password_authentication,
-    port                    => $port,
+  class { 'ssh':
+    storeconfigs_enabled => $storeconfigs_enabled,
+    server_options       => {
+      'PasswordAuthentication' => $password_authentication,
+      'PermitRootLogin'        => $permit_root_login,
+      'Port'                   => $ports,
+      'ChrootDirectory'        => '%h',
+      'PrintMotd'              => $print_motd,
+      'X11Forwarding'          => $x11_forwarding,
+    },
+    client_options       => {
+      'Host *'                => {
+        'SendEnv'             => 'LANG LC_*',
+        'ForwardX11Trusted'   => $x11_forwarding,
+        'ServerAliveInterval' => '10',
+      },
+    },
+    validate_sshd_file   => true,
   }
 
-  profile::base::firewall::entry { '010 allow ssh':
-    port => Integer($port),
+  $ports.each |String $port| {
+    profile::base::firewall::entry { "010 allow ssh port ${port}":
+      port => Integer($port),
+    }
   }
 }
