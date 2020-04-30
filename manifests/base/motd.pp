@@ -1,8 +1,15 @@
 class profile::base::motd (
-  String  $motd_message = "This machine is managed by Puppet"
+  Boolean $use_template     = false,
+  String  $motd_message = 'This machine is managed by Puppet',
 )
 {
-  class {'motd':
-    content =>  $motd_message,
+  if $use_template {
+    class {'motd':
+      template => 'profile/base_motd.epp'
+    }
+  } else {
+    class {'motd':
+      content =>  $motd_message,
+    }
   }
 }
