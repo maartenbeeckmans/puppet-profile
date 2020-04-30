@@ -1,5 +1,5 @@
 class profile::base::repositories (
-  Boolean $epel = false,
+  Boolean $epel = true,
 )
 {
   if $facts['os']['family'] == 'RedHat' and $epel {
