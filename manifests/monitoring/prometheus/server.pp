@@ -22,7 +22,7 @@ class profile::monitoring::prometheus::server (
       },
     } ],
   } ],
-  Array   $alerts                 = [ {
+  Variant[Array,Hash] $alerts     = {
     'groups' => [ {
       'name'  => 'alert.rules',
       'rules' => [ {
@@ -38,7 +38,7 @@ class profile::monitoring::prometheus::server (
           }
       } ],
     } ],
-  } ],
+  },
   Boolean $manage_firewall_entry  = true,
 )
 {
