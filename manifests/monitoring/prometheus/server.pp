@@ -15,7 +15,6 @@ class profile::monitoring::prometheus::server (
   Array   $scrape_configs         = [ {
     'job_name'        => 'prometheus',
     'scrape_interval' => '10s',
-    'scrape_timout'   => '10s',
     'static_configs'  => [ {
       'targets' => ['localhost:9090'],
       'labels'  => {
