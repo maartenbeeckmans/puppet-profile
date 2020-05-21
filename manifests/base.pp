@@ -62,7 +62,7 @@ class profile::base (
   }
 
   if $manage_puppet {
-    class { 'profile::base::puppet_agent': }
+    class { 'profile::puppet': }
   }
 
   if $manage_repos {
