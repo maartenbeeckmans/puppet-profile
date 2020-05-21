@@ -30,7 +30,7 @@ class profile::orchestration::consul (
   String           $user                    = 'consul',
   Boolean          $verify_outgoing         = true,
   Boolean          $verify_server_hostname  = true,
-  String           $version                 = '1.6.2',
+  String           $version                 = '1.7.3',
   Optional[String] $download_url            = undef,
 ){
   include ::profile::orchestration::consul::config
