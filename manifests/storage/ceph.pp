@@ -1,4 +1,53 @@
-# == Class: profile::storage::ceph ==
+# == Class: profile::storage::ceph
+#
+# Module manages ceph cluster
+#
+# === Dependencies
+#
+# - openstack-ceph
+#
+# === Parameters
+#
+# $manage_repo          Manage ceph software repository
+#
+# $is_mon               Is Ceph Monitor
+#
+# $has_osd              Contains Ceph Object Storage Deamons
+#
+# $is_mgr               Is Ceph Manager
+#
+# $is_mds               Is Ceph Metadate Server
+#
+# $is_client            Configura a Ceph Client
+#
+# $authentication_type  Used authentication type, default is none,
+#                       to use authentication, set to cephx  
+#
+# $fsid                 The FSID of the ceph cluster,
+#                       generate with `uuidgen`
+#
+# $mon_host             List of monitor FQDN's or IP's
+#
+# $mon_initial_members  List of monitor ID's
+#
+# $osd_list             Hash of Object Storage Deamons
+#
+# $pool_list            Hash of Ceph pools
+#
+# $fs_list              Hash of Ceph filesystems
+#
+# $admin_key            Admin key,
+#                       Optional, required if authentication type is cephx
+#                       Can be generated with ceph-authtool --gen-print-key
+#
+# $mon_key              Monitor key,
+#                       Optional, required if authentication type is cephx
+#                       Can be generated with ceph-authtool --gen-print-key
+#
+# $bootstrap_osd_key    Bootstrap Object Storage Deamon Key
+#                       Optional, required if authentication type is cephx
+#                       Can be generated with ceph-authtool --gen-print-key
+#
 class profile::storage::ceph (
   Boolean           $manage_repo         = true,
   Boolean           $is_mon              = false,
